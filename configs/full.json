@@ -1,0 +1,13 @@
+{
+  "seed": 3024,
+  "epochs": 20,
+  "batch_size": 128,
+  "learning_rate": 0.003,
+  "weight_decay": 0.0005,
+  "train_limit": null,
+  "val_limit": null,
+  "test_limit": null,
+  "models": ["baseline", "starnet", "ablation"],
+  "output": "artifacts",
+  "device": "auto"
+}

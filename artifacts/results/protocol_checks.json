@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "per_class_counts": {
+    "train_indices": [
+      4500,
+      4500,
+      4500,
+      4500,
+      4500,
+      4500,
+      4500,
+      4500,
+      4500,
+      4500
+    ],
+    "validation_indices": [
+      500,
+      500,
+      500,
+      500,
+      500,
+      500,
+      500,
+      500,
+      500,
+      500
+    ]
+  },
+  "test_per_class": [
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000
+  ],
+  "star_addition_initial_weights_identical_at_seed_3024": true,
+  "all_models_finite_cpu_forward_backward_gradients": true,
+  "pilot_test_exposure": "First 512 official test images, for pipeline sanity checks only"
+}

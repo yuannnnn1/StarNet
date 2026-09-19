@@ -1,0 +1,17 @@
+{
+  "python": "3.14.6",
+  "torch": "2.14.0",
+  "torchvision": "0.29.0",
+  "numpy": "2.4.6",
+  "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "device": "mps",
+  "hardware": "Apple M5",
+  "memory_bytes": "17179869184",
+  "determinism": "Seeds fixed; MPS kernels may not be bitwise deterministic",
+  "source_sha256": {
+    "src/models.py": "ddac95b3b288f535f5d204089f85b17d824124958b449e6cfad19e82b5b1588b",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/train.py": "a3bb4a35325a86f925c192cc1daf283a3a44536dc93212d94ecde86d27503827",
+    "src/data.py": "a8fbf99b42cf27593f3d9f6184a32cdccc0a1d05e3713edb9080734e8c39a08b"
+  }
+}

@@ -1,0 +1,1008 @@
+{
+  "runs": [
+    {
+      "name": "baseline",
+      "config": {
+        "seed": 3024,
+        "epochs": 2,
+        "batch_size": 128,
+        "learning_rate": 0.003,
+        "weight_decay": 0.0005,
+        "train_limit": 2048,
+        "val_limit": 512,
+        "test_limit": 512,
+        "models": [
+          "baseline",
+          "starnet",
+          "ablation"
+        ],
+        "output": "artifacts/pilot",
+        "device": "mps"
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 2.045500673353672,
+          "train_accuracy": 0.2216796875,
+          "val_loss": 2.1916905641555786,
+          "val_accuracy": 0.228515625,
+          "learning_rate": 0.003,
+          "epoch_seconds": 2.104592000017874
+        },
+        {
+          "epoch": 2,
+          "train_loss": 1.7915796414017677,
+          "train_accuracy": 0.31982421875,
+          "val_loss": 1.808767557144165,
+          "val_accuracy": 0.291015625,
+          "learning_rate": 0.0015,
+          "epoch_seconds": 0.5750829580065329
+        }
+      ],
+      "parameters": 289194,
+      "conv_linear_macs": 38634752,
+      "checkpoint_bytes": 1175057,
+      "best_epoch": 2,
+      "best_val_accuracy": 0.291015625,
+      "training_seconds": 2.7062991249840707,
+      "inference_batch_ms_median": 6.845791518571787,
+      "inference_batch_ms_samples": [
+        5.600791017059237,
+        5.633124994346872,
+        5.649124999763444,
+        6.0472080076579005,
+        6.0161670262459666,
+        6.105625012423843,
+        6.263832998229191,
+        6.247999990591779,
+        6.9408749986905605,
+        6.539333000546321,
+        6.756208022125065,
+        6.880792003357783,
+        6.847583019407466,
+        7.366834004642442,
+        6.885082984808832,
+        7.103459007339552,
+        7.375624991254881,
+        6.955207994906232,
+        7.423625007504597,
+        6.938125006854534,
+        7.205958012491465,
+        7.058000017423183,
+        7.351207983447239,
+        6.637084006797522,
+        6.844000017736107,
+        6.848082994110882,
+        6.84275000821799,
+        6.957041972782463,
+        6.7447079927660525,
+        6.671749986708164
+      ],
+      "inference_ms_per_image": 0.05348274623884208,
+      "inference_protocol": "30 synchronized device-resident batches after 10 warmups; excludes preprocessing and transfer",
+      "test_accuracy": 0.3359375,
+      "test_loss": 1.7329945862293243,
+      "test_count": 512,
+      "confusion_matrix": [
+        [
+          18,
+          0,
+          0,
+          0,
+          0,
+          3,
+          5,
+          7,
+          11,
+          13
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          3,
+          3,
+          7,
+          2,
+          24
+        ],
+        [
+          5,
+          0,
+          4,
+          0,
+          2,
+          12,
+          21,
+          6,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          0,
+          14,
+          18,
+          13,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          3,
+          6,
+          23,
+          8,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          18,
+          11,
+          20,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          4,
+          42,
+          9,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          4,
+          15,
+          27,
+          0,
+          1
+        ],
+        [
+          9,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          9,
+          27,
+          11
+        ],
+        [
+          4,
+          0,
+          1,
+          0,
+          0,
+          1,
+          2,
+          16,
+          2,
+          33
+        ]
+      ],
+      "class_recall": [
+        0.3157894736842105,
+        0.0,
+        0.0784313725490196,
+        0.0,
+        0.06818181818181818,
+        0.36,
+        0.75,
+        0.5625,
+        0.47368421052631576,
+        0.559322033898305
+      ],
+      "device": "mps",
+      "checkpoint_sha256": "2d5bf10d89251848841ec14cbc7cc5eef5251cb4c3242843bda3ca4a3930eabd"
+    },
+    {
+      "name": "starnet",
+      "config": {
+        "seed": 3024,
+        "epochs": 2,
+        "batch_size": 128,
+        "learning_rate": 0.003,
+        "weight_decay": 0.0005,
+        "train_limit": 2048,
+        "val_limit": 512,
+        "test_limit": 512,
+        "models": [
+          "baseline",
+          "starnet",
+          "ablation"
+        ],
+        "output": "artifacts/pilot",
+        "device": "mps"
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 2.033909998834133,
+          "train_accuracy": 0.23388671875,
+          "val_loss": 2.0068136155605316,
+          "val_accuracy": 0.28125,
+          "learning_rate": 0.003,
+          "epoch_seconds": 1.5720102079794742
+        },
+        {
+          "epoch": 2,
+          "train_loss": 1.7649843245744705,
+          "train_accuracy": 0.3544921875,
+          "val_loss": 1.7736323773860931,
+          "val_accuracy": 0.333984375,
+          "learning_rate": 0.0015,
+          "epoch_seconds": 1.4793034589965828
+        }
+      ],
+      "parameters": 280522,
+      "conv_linear_macs": 37331904,
+      "checkpoint_bytes": 1165337,
+      "best_epoch": 2,
+      "best_val_accuracy": 0.333984375,
+      "training_seconds": 3.125692750007147,
+      "inference_batch_ms_median": 15.769291509059258,
+      "inference_batch_ms_samples": [
+        19.091958994977176,
+        16.130167001392692,
+        15.745958022307605,
+        15.85208298638463,
+        15.317415993195027,
+        15.370707988040522,
+        15.029000001959503,
+        15.039082994917408,
+        14.782500016735867,
+        15.222666988847777,
+        15.63400001032278,
+        15.844208013731986,
+        15.779125009430572,
+        15.318874997319654,
+        17.237833002582192,
+        16.577667003730312,
+        16.07787501416169,
+        15.961083001457155,
+        16.15904099890031,
+        15.710291016148403,
+        16.095333005068824,
+        15.62295900657773,
+        15.63620800152421,
+        16.003625001758337,
+        16.481791011756286,
+        15.938166994601488,
+        15.723290998721495,
+        15.759458008687943,
+        15.62950000516139,
+        16.061750007793307
+      ],
+      "inference_ms_per_image": 0.12319758991452545,
+      "inference_protocol": "30 synchronized device-resident batches after 10 warmups; excludes preprocessing and transfer",
+      "test_accuracy": 0.357421875,
+      "test_loss": 1.765604853630066,
+      "test_count": 512,
+      "confusion_matrix": [
+        [
+          26,
+          1,
+          3,
+          1,
+          0,
+          0,
+          1,
+          3,
+          21,
+          1
+        ],
+        [
+          1,
+          4,
+          2,
+          0,
+          0,
+          3,
+          2,
+          0,
+          18,
+          11
+        ],
+        [
+          6,
+          0,
+          27,
+          2,
+          1,
+          8,
+          1,
+          1,
+          4,
+          1
+        ],
+        [
+          2,
+          0,
+          17,
+          3,
+          0,
+          15,
+          5,
+          3,
+          2,
+          2
+        ],
+        [
+          2,
+          0,
+          20,
+          0,
+          4,
+          6,
+          3,
+          4,
+          4,
+          1
+        ],
+        [
+          4,
+          0,
+          7,
+          2,
+          0,
+          23,
+          3,
+          4,
+          7,
+          0
+        ],
+        [
+          2,
+          0,
+          20,
+          1,
+          5,
+          5,
+          20,
+          1,
+          2,
+          0
+        ],
+        [
+          5,
+          2,
+          10,
+          1,
+          0,
+          12,
+          3,
+          11,
+          1,
+          3
+        ],
+        [
+          11,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          42,
+          2
+        ],
+        [
+          10,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          6,
+          18,
+          23
+        ]
+      ],
+      "class_recall": [
+        0.45614035087719296,
+        0.0975609756097561,
+        0.5294117647058824,
+        0.061224489795918366,
+        0.09090909090909091,
+        0.46,
+        0.35714285714285715,
+        0.22916666666666666,
+        0.7368421052631579,
+        0.3898305084745763
+      ],
+      "device": "mps",
+      "checkpoint_sha256": "968ca66c0f3fb54a60a0323dbdb082863e5d238873649df314490345f8462630"
+    },
+    {
+      "name": "ablation",
+      "config": {
+        "seed": 3024,
+        "epochs": 2,
+        "batch_size": 128,
+        "learning_rate": 0.003,
+        "weight_decay": 0.0005,
+        "train_limit": 2048,
+        "val_limit": 512,
+        "test_limit": 512,
+        "models": [
+          "baseline",
+          "starnet",
+          "ablation"
+        ],
+        "output": "artifacts/pilot",
+        "device": "mps"
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 2.052436336874962,
+          "train_accuracy": 0.23193359375,
+          "val_loss": 1.9708680510520935,
+          "val_accuracy": 0.255859375,
+          "learning_rate": 0.003,
+          "epoch_seconds": 1.3946403329900932
+        },
+        {
+          "epoch": 2,
+          "train_loss": 1.8395572006702423,
+          "train_accuracy": 0.31640625,
+          "val_loss": 1.755199134349823,
+          "val_accuracy": 0.341796875,
+          "learning_rate": 0.0015,
+          "epoch_seconds": 1.4204982499941252
+        }
+      ],
+      "parameters": 280522,
+      "conv_linear_macs": 37331904,
+      "checkpoint_bytes": 1165522,
+      "best_epoch": 2,
+      "best_val_accuracy": 0.341796875,
+      "training_seconds": 2.8912483339954633,
+      "inference_batch_ms_median": 15.789646509801969,
+      "inference_batch_ms_samples": [
+        17.940582998562604,
+        16.324790980434045,
+        15.59733398607932,
+        15.767584001878276,
+        15.334875002736226,
+        15.443042007973418,
+        15.068875014549121,
+        16.472042014356703,
+        14.969874988310039,
+        15.279583021765575,
+        15.823458001250401,
+        16.03941700886935,
+        16.28020900534466,
+        17.20012500300072,
+        16.700040985597298,
+        16.839083982631564,
+        16.43712498480454,
+        16.167333989869803,
+        15.978791983798146,
+        17.201749986270443,
+        15.586166002321988,
+        15.811709017725661,
+        15.624207997461781,
+        15.381457982584834,
+        16.024375014239922,
+        15.559499996015802,
+        15.708709019236267,
+        15.594791999319568,
+        15.392542001791298,
+        15.482292015803978
+      ],
+      "inference_ms_per_image": 0.12335661335782788,
+      "inference_protocol": "30 synchronized device-resident batches after 10 warmups; excludes preprocessing and transfer",
+      "test_accuracy": 0.359375,
+      "test_loss": 1.730251669883728,
+      "test_count": 512,
+      "confusion_matrix": [
+        [
+          30,
+          2,
+          3,
+          0,
+          0,
+          2,
+          1,
+          4,
+          14,
+          1
+        ],
+        [
+          3,
+          5,
+          3,
+          1,
+          0,
+          2,
+          0,
+          3,
+          15,
+          9
+        ],
+        [
+          7,
+          1,
+          20,
+          2,
+          4,
+          7,
+          5,
+          2,
+          3,
+          0
+        ],
+        [
+          1,
+          1,
+          8,
+          1,
+          5,
+          14,
+          7,
+          8,
+          2,
+          2
+        ],
+        [
+          3,
+          0,
+          17,
+          1,
+          5,
+          3,
+          3,
+          7,
+          3,
+          2
+        ],
+        [
+          2,
+          0,
+          4,
+          3,
+          5,
+          23,
+          3,
+          10,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          9,
+          1,
+          11,
+          4,
+          23,
+          4,
+          2,
+          2
+        ],
+        [
+          1,
+          1,
+          4,
+          1,
+          2,
+          7,
+          2,
+          24,
+          2,
+          4
+        ],
+        [
+          20,
+          0,
+          4,
+          0,
+          0,
+          2,
+          0,
+          1,
+          29,
+          1
+        ],
+        [
+          9,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          5,
+          18,
+          24
+        ]
+      ],
+      "class_recall": [
+        0.5263157894736842,
+        0.12195121951219512,
+        0.39215686274509803,
+        0.02040816326530612,
+        0.11363636363636363,
+        0.46,
+        0.4107142857142857,
+        0.5,
+        0.5087719298245614,
+        0.4067796610169492
+      ],
+      "device": "mps",
+      "checkpoint_sha256": "f81a3aadfa8496f6cb602743388683c1a1a630dcef0cd2680ecf7720c380bfc4"
+    }
+  ],
+  "examples": {
+    "baseline": [
+      {
+        "index": 1,
+        "true": "ship",
+        "predicted": "ship",
+        "correct": true,
+        "confidence": 0.28342336416244507,
+        "image": "samples/test_1.png"
+      },
+      {
+        "index": 2,
+        "true": "ship",
+        "predicted": "ship",
+        "correct": true,
+        "confidence": 0.5119574666023254,
+        "image": "samples/test_2.png"
+      },
+      {
+        "index": 3,
+        "true": "airplane",
+        "predicted": "airplane",
+        "correct": true,
+        "confidence": 0.3470637798309326,
+        "image": "samples/test_3.png"
+      },
+      {
+        "index": 4,
+        "true": "frog",
+        "predicted": "frog",
+        "correct": true,
+        "confidence": 0.49123063683509827,
+        "image": "samples/test_4.png"
+      },
+      {
+        "index": 7,
+        "true": "frog",
+        "predicted": "frog",
+        "correct": true,
+        "confidence": 0.40848737955093384,
+        "image": "samples/test_7.png"
+      },
+      {
+        "index": 11,
+        "true": "truck",
+        "predicted": "truck",
+        "correct": true,
+        "confidence": 0.5374955534934998,
+        "image": "samples/test_11.png"
+      },
+      {
+        "index": 0,
+        "true": "cat",
+        "predicted": "horse",
+        "correct": false,
+        "confidence": 0.25507014989852905,
+        "image": "samples/test_0.png"
+      },
+      {
+        "index": 5,
+        "true": "frog",
+        "predicted": "dog",
+        "correct": false,
+        "confidence": 0.2668319642543793,
+        "image": "samples/test_5.png"
+      },
+      {
+        "index": 6,
+        "true": "automobile",
+        "predicted": "dog",
+        "correct": false,
+        "confidence": 0.2799718976020813,
+        "image": "samples/test_6.png"
+      },
+      {
+        "index": 8,
+        "true": "cat",
+        "predicted": "dog",
+        "correct": false,
+        "confidence": 0.31370753049850464,
+        "image": "samples/test_8.png"
+      },
+      {
+        "index": 9,
+        "true": "automobile",
+        "predicted": "truck",
+        "correct": false,
+        "confidence": 0.35394570231437683,
+        "image": "samples/test_9.png"
+      },
+      {
+        "index": 10,
+        "true": "airplane",
+        "predicted": "ship",
+        "correct": false,
+        "confidence": 0.4118420481681824,
+        "image": "samples/test_10.png"
+      }
+    ],
+    "starnet": [
+      {
+        "index": 1,
+        "true": "ship",
+        "predicted": "ship",
+        "correct": true,
+        "confidence": 0.5388482809066772,
+        "image": "samples/test_1.png"
+      },
+      {
+        "index": 2,
+        "true": "ship",
+        "predicted": "ship",
+        "correct": true,
+        "confidence": 0.6554433703422546,
+        "image": "samples/test_2.png"
+      },
+      {
+        "index": 5,
+        "true": "frog",
+        "predicted": "frog",
+        "correct": true,
+        "confidence": 0.2765309512615204,
+        "image": "samples/test_5.png"
+      },
+      {
+        "index": 11,
+        "true": "truck",
+        "predicted": "truck",
+        "correct": true,
+        "confidence": 0.37724003195762634,
+        "image": "samples/test_11.png"
+      },
+      {
+        "index": 12,
+        "true": "dog",
+        "predicted": "dog",
+        "correct": true,
+        "confidence": 0.19216638803482056,
+        "image": "samples/test_12.png"
+      },
+      {
+        "index": 15,
+        "true": "ship",
+        "predicted": "ship",
+        "correct": true,
+        "confidence": 0.3461126387119293,
+        "image": "samples/test_15.png"
+      },
+      {
+        "index": 0,
+        "true": "cat",
+        "predicted": "frog",
+        "correct": false,
+        "confidence": 0.15920129418373108,
+        "image": "samples/test_0.png"
+      },
+      {
+        "index": 3,
+        "true": "airplane",
+        "predicted": "ship",
+        "correct": false,
+        "confidence": 0.5553168654441833,
+        "image": "samples/test_3.png"
+      },
+      {
+        "index": 4,
+        "true": "frog",
+        "predicted": "bird",
+        "correct": false,
+        "confidence": 0.3470713496208191,
+        "image": "samples/test_4.png"
+      },
+      {
+        "index": 6,
+        "true": "automobile",
+        "predicted": "truck",
+        "correct": false,
+        "confidence": 0.2950460910797119,
+        "image": "samples/test_6.png"
+      },
+      {
+        "index": 7,
+        "true": "frog",
+        "predicted": "bird",
+        "correct": false,
+        "confidence": 0.3284095823764801,
+        "image": "samples/test_7.png"
+      },
+      {
+        "index": 8,
+        "true": "cat",
+        "predicted": "bird",
+        "correct": false,
+        "confidence": 0.1729329526424408,
+        "image": "samples/test_8.png"
+      }
+    ],
+    "ablation": [
+      {
+        "index": 1,
+        "true": "ship",
+        "predicted": "ship",
+        "correct": true,
+        "confidence": 0.5749982595443726,
+        "image": "samples/test_1.png"
+      },
+      {
+        "index": 2,
+        "true": "ship",
+        "predicted": "ship",
+        "correct": true,
+        "confidence": 0.5576001405715942,
+        "image": "samples/test_2.png"
+      },
+      {
+        "index": 5,
+        "true": "frog",
+        "predicted": "frog",
+        "correct": true,
+        "confidence": 0.28613564372062683,
+        "image": "samples/test_5.png"
+      },
+      {
+        "index": 10,
+        "true": "airplane",
+        "predicted": "airplane",
+        "correct": true,
+        "confidence": 0.4335339665412903,
+        "image": "samples/test_10.png"
+      },
+      {
+        "index": 11,
+        "true": "truck",
+        "predicted": "truck",
+        "correct": true,
+        "confidence": 0.41061893105506897,
+        "image": "samples/test_11.png"
+      },
+      {
+        "index": 15,
+        "true": "ship",
+        "predicted": "ship",
+        "correct": true,
+        "confidence": 0.18912971019744873,
+        "image": "samples/test_15.png"
+      },
+      {
+        "index": 0,
+        "true": "cat",
+        "predicted": "dog",
+        "correct": false,
+        "confidence": 0.37341880798339844,
+        "image": "samples/test_0.png"
+      },
+      {
+        "index": 3,
+        "true": "airplane",
+        "predicted": "ship",
+        "correct": false,
+        "confidence": 0.5010887384414673,
+        "image": "samples/test_3.png"
+      },
+      {
+        "index": 4,
+        "true": "frog",
+        "predicted": "bird",
+        "correct": false,
+        "confidence": 0.25305867195129395,
+        "image": "samples/test_4.png"
+      },
+      {
+        "index": 6,
+        "true": "automobile",
+        "predicted": "truck",
+        "correct": false,
+        "confidence": 0.32807475328445435,
+        "image": "samples/test_6.png"
+      },
+      {
+        "index": 7,
+        "true": "frog",
+        "predicted": "deer",
+        "correct": false,
+        "confidence": 0.29241234064102173,
+        "image": "samples/test_7.png"
+      },
+      {
+        "index": 8,
+        "true": "cat",
+        "predicted": "dog",
+        "correct": false,
+        "confidence": 0.3617205023765564,
+        "image": "samples/test_8.png"
+      }
+    ]
+  },
+  "dataset": {
+    "seed": 3024,
+    "train_count": 2048,
+    "validation_count": 512,
+    "test_count": 512,
+    "mean": [
+      0.4910453001828718,
+      0.4816864562784902,
+      0.44572441226310733
+    ],
+    "std": [
+      0.24709342625035746,
+      0.24349118726259547,
+      0.2614437017211898
+    ],
+    "classes": [
+      "airplane",
+      "automobile",
+      "bird",
+      "cat",
+      "deer",
+      "dog",
+      "frog",
+      "horse",
+      "ship",
+      "truck"
+    ],
+    "normalization_source": "45000 training images only"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "torch": "2.14.0",
+    "torchvision": "0.29.0",
+    "numpy": "2.4.6",
+    "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "device": "mps",
+    "hardware": "Apple M5",
+    "memory_bytes": "17179869184",
+    "determinism": "Seeds fixed; MPS kernels may not be bitwise deterministic",
+    "source_sha256": {
+      "src/models.py": "ddac95b3b288f535f5d204089f85b17d824124958b449e6cfad19e82b5b1588b",
+      "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/train.py": "a3bb4a35325a86f925c192cc1daf283a3a44536dc93212d94ecde86d27503827",
+      "src/data.py": "a8fbf99b42cf27593f3d9f6184a32cdccc0a1d05e3713edb9080734e8c39a08b"
+    }
+  },
+  "pilot": true,
+  "example_rule": "First six correct and first six incorrect in official test order"
+}

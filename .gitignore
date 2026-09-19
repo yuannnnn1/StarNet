@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.DS_Store
+data/
+artifacts/checkpoints/
+artifacts/pilot/checkpoints/
+artifacts/report_qa/
+artifacts/website_qa/
+node_modules/
+*.log
+docs/sources/*.pdf

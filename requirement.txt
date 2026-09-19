@@ -1,0 +1,525 @@
+AI Assignment #1 — CISC3024 Pattern Recognition
+Codex Implementation Requirements
+
+IMPORTANT:
+- Do NOT reuse the previous MNIST + LeNet project as the assignment topic.
+- Treat this as a new project from scratch.
+- Do NOT assume a dataset, algorithm, application, architecture, or experiment in advance.
+- The entire workflow must be AI-assisted. The student must NOT write any code manually.
+- Codex is responsible for algorithm research, project design, implementation, experiments, result generation, verification, documentation, and report preparation.
+
+============================================================
+1. ASSIGNMENT OBJECTIVE
+============================================================
+
+The project must satisfy the original AI Assignment #1 requirement:
+
+"Find a recent algorithm of Deep CNN or Deep Autoencoder with an application in computer vision and pattern recognition."
+
+The project must therefore contain ALL of the following:
+
+1. A genuinely recent algorithm/method.
+2. The algorithm must belong to Deep CNN or Deep Autoencoder.
+3. It must have a clear application in computer vision and/or pattern recognition.
+4. The algorithm must be implementable and experimentally testable within the available local computing resources.
+5. The algorithm must be supported by a credible primary research paper or official publication/source.
+6. The implementation must be performed by AI/Codex rather than handwritten by the student.
+
+Do NOT select:
+- LeNet or other classical CNNs merely because they are easy to implement.
+- A method only because it is famous.
+- An algorithm that is not actually a Deep CNN or Deep Autoencoder.
+- Vision Transformer/ViT as the main algorithm unless there is a clearly justified Deep CNN/Deep Autoencoder component that independently satisfies the assignment.
+- An old algorithm presented as "recent" without evidence.
+
+For "recent", prefer a method published in the 2020s and verify the publication year from the primary paper or an authoritative source.
+
+============================================================
+2. PHASE A — AI SEARCH FOR THE ALGORITHM
+============================================================
+
+Before writing implementation code, Codex must research candidate algorithms.
+
+Search for multiple plausible recent Deep CNN / Deep Autoencoder methods and compare them using factual criteria:
+
+- publication year
+- original paper/source
+- algorithm category
+- main technical idea
+- computer vision/pattern recognition application
+- expected computational cost
+- implementation complexity
+- availability of reliable references
+- suitability for a reproducible student project
+- suitable public dataset(s)
+- feasibility on the available machine
+
+The final selection must be justified by evidence, not by simply calling one method "the best".
+
+IMPORTANT:
+- Record the actual AI research/search process.
+- Record the actual prompts/questions used to search for the algorithm.
+- Do NOT invent prompts retroactively.
+- Keep useful search results, paper links, and reasoning because these will be needed in the final report.
+
+Before implementation, provide a concise proposal containing:
+1. selected algorithm
+2. original paper
+3. publication year
+4. why it satisfies "recent Deep CNN or Deep Autoencoder"
+5. computer vision/pattern recognition application
+6. dataset
+7. planned experiments
+8. expected computational requirements
+9. project directory/file plan
+
+============================================================
+3. PHASE B — SELECT A REALISTIC APPLICATION AND DATASET
+============================================================
+
+Choose an application in computer vision or pattern recognition that demonstrates the algorithm meaningfully.
+
+Possible application types include, but are not limited to:
+- image classification
+- object recognition
+- image reconstruction
+- image denoising
+- anomaly detection
+- segmentation
+- representation learning
+- other clearly justified computer vision/pattern recognition tasks
+
+Dataset requirements:
+- Use a legitimate public dataset.
+- Prefer a dataset with an official webpage or primary publication.
+- The dataset must be appropriate for the selected algorithm and task.
+- Document dataset source, size, classes/tasks, and train/validation/test protocol.
+- Avoid unnecessarily large datasets if they make the project infeasible on local hardware.
+- If the original dataset is too large for local execution, define a scientifically reasonable subset and clearly document the limitation.
+
+Do not silently replace the selected algorithm with a simpler unrelated model just because the dataset is difficult.
+
+============================================================
+4. PHASE C — AI IMPLEMENTATION
+============================================================
+
+Codex must implement the complete project.
+
+The student must NOT write any code manually.
+
+Codex should:
+1. Inspect the available workspace and hardware first.
+2. Create or update the project structure.
+3. Implement data loading and preprocessing.
+4. Implement the selected algorithm.
+5. Implement training.
+6. Implement validation.
+7. Implement testing/evaluation.
+8. Implement result visualization.
+9. Save reproducible experiment configurations and outputs.
+10. Update/create README documentation.
+11. Verify the complete workflow.
+
+The implementation should stay faithful to the selected paper.
+
+If an adaptation is necessary because of:
+- image size,
+- number of channels,
+- dataset size,
+- computational resources,
+- number of classes,
+- training budget,
+
+then explicitly document the adaptation and explain why it is necessary.
+
+Do not claim an exact reproduction if the implementation is an adaptation.
+
+============================================================
+5. REPRODUCIBILITY REQUIREMENTS
+============================================================
+
+Use reproducible settings wherever practical.
+
+Record:
+- Python version
+- framework/library versions
+- operating system
+- hardware/device
+- random seed(s)
+- dataset split
+- preprocessing
+- input resolution
+- batch size
+- optimizer
+- learning rate
+- scheduler, if any
+- weight decay, if any
+- number of epochs
+- loss function
+- model configuration
+- checkpoint-selection rule
+- training time
+- evaluation protocol
+
+Save important configuration and result information to machine-readable files where practical.
+
+The README must explain how another student can reproduce the experiment.
+
+============================================================
+6. EXPERIMENT REQUIREMENTS
+============================================================
+
+The project must include actual experiments, not only code.
+
+At minimum, perform:
+
+A. Main experiment
+- Train the selected algorithm on the chosen task.
+- Evaluate it on held-out test data.
+- Report appropriate quantitative metrics.
+
+B. Meaningful comparison or ablation
+- Compare against at least one meaningful baseline, simplified version, ablation, or alternative configuration.
+- Keep the comparison scientifically controlled where possible.
+- Clearly state what is being changed and what is held constant.
+
+C. Additional analysis
+Include at least one useful analysis such as:
+- confusion matrix
+- qualitative predictions
+- reconstruction examples
+- error analysis
+- robustness test
+- ablation study
+- parameter count
+- training curves
+- inference/training cost
+- class-wise performance
+- another task-appropriate analysis
+
+Do not manufacture results.
+
+All reported numerical results must come from actual executed experiments.
+
+If an experiment cannot be completed, state the limitation instead of inventing a value.
+
+============================================================
+7. VISUALIZATIONS
+============================================================
+
+Generate appropriate figures from actual experiment outputs.
+
+Depending on the task, this may include:
+- training/validation loss curves
+- accuracy or other metric curves
+- confusion matrix
+- example predictions
+- reconstruction examples
+- error cases
+- ablation comparison
+- qualitative visualization
+- performance comparison tables
+
+Every figure used in the final report must correspond to a real generated result.
+
+Use clear filenames and store figures in a dedicated artifacts/figures directory.
+
+============================================================
+8. VERIFICATION
+============================================================
+
+Before declaring the project complete, Codex must verify:
+
+- source code compiles/imports successfully
+- dependencies are consistent
+- dataset loading works
+- train/validation/test split is correct
+- no unintended data leakage occurs
+- model forward pass works
+- training completes
+- checkpoint loading works
+- evaluation completes
+- reported metrics match saved experiment outputs
+- generated figures correspond to actual results
+- README instructions are consistent with the project
+- source-code webpage/repository is accessible if already published
+
+Keep a record of important verification results.
+
+============================================================
+9. REPORT REQUIREMENTS
+============================================================
+
+The final AI assignment report must be in Word/PDF format and MUST contain the following six required sections.
+
+------------------------------------------------------------
+1. HOW I ASKED AI TO FIND THE ALGORITHM
+------------------------------------------------------------
+
+This section must document the actual AI-assisted search process.
+
+Include:
+- the initial prompt(s) given to AI/Codex
+- how AI searched for candidate algorithms
+- candidate algorithms considered
+- relevant sources/papers found
+- factual comparison criteria
+- why the final algorithm was selected
+- publication year and original source
+- how the selected algorithm satisfies "recent Deep CNN or Deep Autoencoder"
+- how the application and dataset were selected
+
+IMPORTANT:
+- Use the real prompts and real workflow.
+- Do NOT fabricate a conversation that did not happen.
+- Screenshots or other evidence of AI interaction may be included if available.
+
+------------------------------------------------------------
+2. ALGORITHM DESCRIPTION
+------------------------------------------------------------
+
+Explain the selected algorithm clearly enough for a Pattern Recognition course report.
+
+Include:
+- algorithm name
+- original paper/source
+- publication year
+- problem it addresses
+- main idea
+- architecture
+- important modules/layers/blocks
+- data flow
+- mathematical ideas or equations where useful
+- training objective/loss
+- important differences from earlier methods, if relevant
+- why it is a Deep CNN or Deep Autoencoder
+- relationship between the paper's original method and the implemented version
+
+Use diagrams/tables where they improve clarity.
+
+------------------------------------------------------------
+3. HOW AI IMPLEMENTS THE ALGORITHM
+------------------------------------------------------------
+
+Explain how Codex transformed the algorithm description into a working project.
+
+Include:
+- actual implementation workflow
+- project structure
+- important source files and their responsibilities
+- data preprocessing
+- model implementation
+- training pipeline
+- validation/checkpoint process
+- evaluation pipeline
+- visualization generation
+- any adaptation required for the chosen dataset/task
+- verification/debugging performed by AI
+- student's role versus AI's role
+
+The report should make clear that the student did not manually write the code.
+
+------------------------------------------------------------
+4. EXPERIMENT SETTINGS AND RESULTS
+------------------------------------------------------------
+
+Include:
+
+A. Experiment settings
+- dataset
+- task
+- data split
+- preprocessing
+- model configuration
+- hardware
+- software versions
+- random seed
+- batch size
+- optimizer
+- learning rate
+- scheduler
+- epochs
+- loss
+- checkpoint rule
+
+B. Results
+- main experiment results
+- baseline/ablation results
+- appropriate metrics
+- tables
+- figures
+- training curves
+- additional analysis
+
+C. Interpretation
+- explain what the results show
+- distinguish observation from interpretation
+- discuss limitations
+- do not claim statistical significance unless it was actually tested
+- do not overclaim generalization from one dataset or one run
+
+All numerical results must come from actual experiment outputs.
+
+------------------------------------------------------------
+5. WHAT I HAVE LEARNT FROM THIS AI ASSIGNMENT
+------------------------------------------------------------
+
+Write a genuine first-person reflection based on the actual work.
+
+Possible topics:
+- how to use AI tools to search for algorithms
+- how to formulate precise prompts
+- how to evaluate whether an algorithm really satisfies a technical requirement
+- understanding the selected Deep CNN/Deep Autoencoder
+- translating a research paper into an implementation
+- experiment design
+- validation versus test evaluation
+- reproducibility
+- debugging and verification of AI-generated code
+- limitations of relying on AI
+- what was difficult or surprising
+- what was learned about computer vision/pattern recognition
+
+Do not write generic praise of AI.
+
+The reflection must be consistent with what actually happened during the project.
+
+------------------------------------------------------------
+6. WEBPAGE LINK OF SOURCE CODES
+------------------------------------------------------------
+
+Provide the public webpage link to the source-code repository.
+
+Include:
+- repository URL
+- brief description of repository structure
+- instructions for reproduction
+- required environment/dependencies
+- how to run training
+- how to run evaluation
+- where results/figures are stored
+
+Do not provide a fake URL.
+
+============================================================
+10. REPORT EVIDENCE AND TRACEABILITY
+============================================================
+
+The report must be traceable to the actual project.
+
+Maintain:
+- actual AI prompts
+- algorithm search sources
+- paper/source links
+- implementation files
+- experiment configuration
+- raw/saved results
+- generated figures
+- verification evidence
+
+The report must never contain:
+- invented experiment results
+- invented AI conversations
+- invented sources
+- unsupported claims
+- results copied from a paper and presented as locally reproduced results
+- claims that an exact reproduction was achieved when the implementation was adapted
+
+Clearly distinguish:
+- results obtained by the project
+- results reported in the original paper
+- interpretations by the student/AI
+
+============================================================
+11. SOURCE CODE AND REPOSITORY
+============================================================
+
+Create a clean project repository containing, as appropriate:
+
+- source code
+- requirements/environment file
+- README.md
+- experiment configuration
+- scripts for training/evaluation
+- generated figures
+- relevant result summaries
+- report source if appropriate
+
+Do NOT commit unnecessary:
+- virtual environments
+- caches
+- temporary files
+- huge generated artifacts unless needed for reproduction
+
+If the dataset license permits redistribution and the dataset is reasonably sized, document whether dataset files are included. Otherwise provide the official download instructions.
+
+============================================================
+12. CODEx WORKFLOW RULES
+============================================================
+
+Follow this workflow:
+
+STEP 1 — Inspect
+- Read this requirement file completely.
+- Inspect the workspace and available hardware.
+- Do not modify project files yet.
+
+STEP 2 — Research
+- Search for recent Deep CNN / Deep Autoencoder algorithms.
+- Verify primary sources and publication years.
+- Compare candidates.
+- Select a feasible method and application.
+
+STEP 3 — Proposal
+Present:
+- selected algorithm
+- paper
+- publication year
+- application
+- dataset
+- implementation plan
+- experiment plan
+- project structure
+
+STEP 4 — Implement
+After approval, implement the project using AI-generated code.
+
+STEP 5 — Run
+Execute the actual experiments.
+
+STEP 6 — Verify
+Check code, data, experiments, metrics, figures, and reproducibility.
+
+STEP 7 — Document
+Generate README and the required report using the actual project evidence.
+
+STEP 8 — Final audit
+Before finishing, check every requirement in this file and report any unmet item explicitly.
+
+============================================================
+13. FINAL DELIVERABLES
+============================================================
+
+The completed project must contain:
+
+1. A recent Deep CNN or Deep Autoencoder algorithm.
+2. A valid computer vision/pattern recognition application.
+3. A public/reproducible dataset.
+4. AI-generated implementation.
+5. Actual experiments and results.
+6. At least one meaningful comparison/ablation/baseline.
+7. Appropriate visualizations.
+8. Verification evidence.
+9. README with reproduction instructions.
+10. Source-code webpage/repository.
+11. Word/PDF AI assignment report containing exactly the six required content areas:
+   (1) How I asked AI to find the algorithm
+   (2) Algorithm description
+   (3) How AI implements the algorithm
+   (4) Experiment settings and results
+   (5) What I have learnt from this AI assignment
+   (6) Webpage link of source codes
+
+FINAL WARNING:
+Do not fall back to the previous MNIST/LeNet project simply because it already exists.
+The assignment's central task is to FIND A RECENT DEEP CNN OR DEEP AUTOENCODER ALGORITHM and then use AI to implement and evaluate it.

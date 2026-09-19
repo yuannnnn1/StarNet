@@ -1,0 +1,12 @@
+StarNet CIFAR-10 assignment adaptation
+
+The StarNet block in src/models.py follows the architecture implemented by
+Xu Ma and collaborators in Rewrite the Stars (CVPR 2024).
+Official repository: https://github.com/ma-xu/Rewrite-the-Stars
+Inspected commit: c999eb50840a44f9f1d92e8f7d2c22cd645a6d5e
+
+The upstream Apache License 2.0 and inspected source are retained in
+docs/sources/StarNet-LICENSE and docs/sources/official_starnet.py.
+Modifications include a CIFAR-10 stem/head, smaller stage configuration,
+an additive operator ablation and a separate training/evaluation pipeline.
+The project does not claim endorsement by the paper's authors.

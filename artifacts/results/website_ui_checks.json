@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": [
+    "Desktop loads saved metrics and supplied repository link",
+    "Metric switch, all confusion models and all prediction model/outcome combinations work",
+    "390px mobile viewport has no page overflow; overview/prediction screenshots captured",
+    "320px mobile viewport has no page overflow; overview/prediction screenshots captured",
+    "All displayed image assets decoded; no JavaScript page errors"
+  ]
+}

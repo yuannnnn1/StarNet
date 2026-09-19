@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>StarNet | CIFAR-10 Study</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="#overview">StarNet <span>CIFAR-10 study</span></a
+      ><a href="../artifacts/results/experiment_summary.csv" download
+        >Download results</a
+      >
+    </header>
+    <div class="layout">
+      <nav aria-label="Study sections">
+        <a href="#overview">Overview</a><a href="#algorithm">Algorithm</a
+        ><a href="#dataset">Dataset</a><a href="#training">Training results</a
+        ><a href="#comparison">Model comparison</a
+        ><a href="#ablation">Ablation study</a
+        ><a href="#confusion">Confusion matrix</a
+        ><a href="#predictions">Predictions</a><a href="#sources">Sources</a>
+        <p id="device"></p>
+      </nav>
+      <main>
+        <section id="overview">
+          <p class="eyebrow">CISC3024 · PATTERN RECOGNITION</p>
+          <h1>StarNet on CIFAR-10</h1>
+          <p class="lead">
+            Does multiplying feature branches improve image classification?
+          </p>
+          <p>
+            A local adaptation of <cite>Rewrite the Stars</cite> (CVPR 2024),
+            compared with a conventional CNN and an additive ablation. All
+            models train from scratch under the same protocol.
+          </p>
+          <div id="status" role="status">Loading experiment results...</div>
+          <div id="summary" class="metrics"></div>
+          <p class="note">
+            This study evaluates a compact CIFAR-10 adaptation. It does not
+            reproduce the paper's ImageNet experiments. One seed and a limited
+            training budget support descriptive comparisons only.
+          </p>
+        </section>
+        <section id="algorithm">
+          <h2>Algorithm</h2>
+          <h3>Conventional CNN</h3>
+          <div class="flow">
+            <span>32 × 32 RGB</span><b>→</b
+            ><span>3 × [Conv / BN / ReLU<br />Conv / BN / ReLU / Pool]</span
+            ><b>→</b><span>Global average<br />10-class head</span>
+          </div>
+          <h3>StarNet adaptation</h3>
+          <div class="flow">
+            <span>Stride-1 stem<br />24 channels</span><b>→</b
+            ><span>24 / 48 / 96 channels<br />1 / 1 / 2 Star blocks</span
+            ><b>→</b><span>BN / global average<br />10-class head</span>
+          </div>
+          <h3>Inside the Star block</h3>
+          <div class="equation">
+            z = BN(DWConv₇×₇(x))<br />h = ReLU6(W₁z + b₁) ⊙ (W₂z + b₂)<br />output
+            = x + DWConv₇×₇(BN(W₃h + b₃))
+          </div>
+          <p>
+            Two pointwise projections expand the channels by a factor of three.
+            Their element-wise product introduces interactions between learned
+            features without retaining an explicit expanded polynomial feature
+            vector. The projection contracts the channels, then a second
+            depthwise convolution and residual connection complete the block.
+          </p>
+          <p>
+            For one output coordinate, (w₁ᵀz)(w₂ᵀz) contains pairwise terms
+            zᵢzⱼ. ReLU6 and repeated blocks make the actual network more complex
+            than this simple quadratic illustration.
+          </p>
+        </section>
+        <section id="dataset">
+          <h2>Dataset</h2>
+          <p>
+            CIFAR-10 contains color images at 32 × 32 resolution. A seeded,
+            class-stratified split reserves validation images from the official
+            training set.
+          </p>
+          <div id="split" class="metrics"></div>
+          <img
+            src="../artifacts/figures/dataset_samples.png"
+            alt="One actual training image from each of the ten CIFAR-10 classes"
+            loading="lazy"
+          />
+          <p id="preprocessing"></p>
+        </section>
+        <section id="training">
+          <h2>Training results</h2>
+          <div class="controls">
+            <label for="metric">Metric</label
+            ><select id="metric">
+              <option value="accuracy">Accuracy</option>
+              <option value="loss">Cross-entropy loss</option>
+            </select>
+          </div>
+          <img
+            id="training-chart"
+            src="../artifacts/figures/training_accuracy.png"
+            alt="Training and validation accuracy curves for all three models"
+            loading="lazy"
+          />
+          <p id="training-config"></p>
+          <p class="note">
+            Training metrics are measured on augmented batches while weights
+            change. Validation metrics use unaugmented images after each epoch.
+            Checkpoints are selected by validation accuracy; test data do not
+            select epochs.
+          </p>
+        </section>
+        <section id="comparison">
+          <h2>Model comparison</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Test accuracy</th>
+                  <th>Test loss</th>
+                  <th>Parameters</th>
+                  <th>MACs</th>
+                  <th>Train time</th>
+                  <th>Inference / image</th>
+                </tr>
+              </thead>
+              <tbody id="comparison-body"></tbody>
+            </table>
+          </div>
+          <img
+            src="../artifacts/figures/model_comparison.png"
+            alt="Measured test accuracy, parameter count and training duration"
+            loading="lazy"
+          />
+          <p class="note" id="timing-note"></p>
+        </section>
+        <section id="ablation">
+          <h2>Star operation ablation</h2>
+          <div class="flow">
+            <span class="star">StarNet<br />ReLU6(a) ⊙ b</span><b>vs.</b
+            ><span class="add">Additive ablation<br />ReLU6(a) + b</span>
+          </div>
+          <p>
+            Only the branch combination changes. Widths, depth, initialization
+            seed, split, augmentation, optimizer, schedule, and training budget
+            remain fixed. Both branches remain trainable, so parameter counts
+            are identical.
+          </p>
+          <p id="ablation-result" class="finding"></p>
+          <img
+            src="../artifacts/figures/ablation_comparison.png"
+            alt="Measured test accuracy of multiplicative and additive StarNet variants"
+            loading="lazy"
+          />
+          <p class="note">
+            Addition also changes activation scale and optimization behavior.
+            This is evidence about the operator in this specific architecture
+            and budget, not proof of universal superiority.
+          </p>
+        </section>
+        <section id="confusion">
+          <h2>Confusion matrix</h2>
+          <div class="controls">
+            <label for="confusion-model">Model</label
+            ><select id="confusion-model">
+              <option value="starnet">StarNet</option>
+              <option value="baseline">Conventional CNN</option>
+              <option value="ablation">Additive ablation</option>
+            </select>
+          </div>
+          <img
+            id="confusion-chart"
+            src="../artifacts/figures/confusion_matrix_starnet.png"
+            alt="StarNet test confusion matrix with true labels as rows and predictions as columns"
+            loading="lazy"
+          />
+          <div id="class-recall" class="table-wrap"></div>
+        </section>
+        <section id="predictions">
+          <h2>Prediction examples</h2>
+          <div class="controls">
+            <label for="prediction-model">Model</label
+            ><select id="prediction-model">
+              <option value="starnet">StarNet</option>
+              <option value="baseline">Conventional CNN</option>
+              <option value="ablation">Additive ablation</option></select
+            ><label for="prediction-filter">Outcome</label
+            ><select id="prediction-filter">
+              <option value="all">All</option>
+              <option value="correct">Correct</option>
+              <option value="incorrect">Incorrect</option>
+            </select>
+          </div>
+          <p>
+            First six correct and first six incorrect predictions in official
+            test order. Confidence is the maximum softmax probability, not a
+            calibrated reliability estimate.
+          </p>
+          <div id="examples" class="examples"></div>
+        </section>
+        <section id="sources">
+          <h2>Sources and reproducibility</h2>
+          <p>
+            <a
+              href="https://openaccess.thecvf.com/content/CVPR2024/html/Ma_Rewrite_the_Stars_CVPR_2024_paper.html"
+              >Ma et al. · Rewrite the Stars · CVPR 2024</a
+            >
+          </p>
+          <p>
+            <a href="https://github.com/ma-xu/Rewrite-the-Stars"
+              >Official StarNet implementation</a
+            >
+            ·
+            <a href="https://www.cs.toronto.edu/~kriz/cifar.html"
+              >Official CIFAR-10 dataset</a
+            >
+          </p>
+          <p>
+            <a href="../artifacts/results/dashboard.json">Raw dashboard data</a>
+            ·
+            <a href="../artifacts/results/config.json"
+              >Experiment configuration</a
+            >
+            ·
+            <a href="../artifacts/results/verification.json"
+              >Verification evidence</a
+            >
+          </p>
+          <p>
+            <a href="../artifacts/report/StarNet_Report.docx">Word report</a> ·
+            <a href="../artifacts/report/StarNet_Report.md">Markdown report</a> ·
+            <a href="../README.md">Reproduction instructions</a>
+          </p>
+          <p id="repository-status">
+            Assignment repository publication pending. The official StarNet
+            repository above belongs to the paper's authors.
+          </p>
+        </section>
+      </main>
+    </div>
+    <footer>
+      StarNet CIFAR-10 study · Actual local experiments · AI-assisted
+      implementation
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,587 @@
+Work on the complete AI assignment in this project directory:
+
+`/Users/yuanjingting/Desktop/3024-AI assignment 1`
+
+You have my approval to proceed with the complete project. **Do not ask me to choose or approve the algorithm or project plan again.**
+
+The approved project is:
+
+* **Algorithm:** StarNet — “Rewrite the Stars,” CVPR 2024
+* **Application:** CIFAR-10 image classification
+* **Baseline:** a comparable conventional CNN
+* **Main ablation:** Star Operation ablation
+* **Experiments:** actual, reproducible experiments
+* **Website:** functional, data-driven visualization website
+* **Report:** complete Word/PDF report strictly following `requirement.txt`
+
+You have full permission to create, modify, and execute files inside this project directory. Use the terminal extensively. **Do not merely describe what should be done — actually implement, execute, verify, and generate the deliverables.**
+
+---
+
+# PHASE 0 — Understand the assignment before implementation
+
+First:
+
+1. Read `requirement.txt` completely.
+2. Extract every requirement from it.
+3. Identify all required report sections and deliverables.
+4. Inspect the entire project directory.
+5. Check whether any existing code, data, files, or configuration should be preserved.
+6. Check the available Python/PyTorch environment.
+7. Check whether Apple MPS is available.
+8. Check available disk space and relevant computational resources.
+
+Do not start writing a large amount of code before understanding the assignment requirements.
+
+Treat `requirement.txt` as the **authoritative specification**.
+
+The final project must satisfy every requirement in that file.
+
+---
+
+# PHASE 1 — Research and verify StarNet
+
+Before implementing StarNet:
+
+1. Verify the original StarNet paper:
+
+   * “Rewrite the Stars”
+   * CVPR 2024
+2. Inspect the official implementation/repository if available.
+3. Understand the original architecture and especially the **Star Operation**.
+4. Identify which parts of the original architecture are appropriate for CIFAR-10.
+5. Clearly distinguish:
+
+   * original StarNet
+   * our CIFAR-10 adaptation
+
+Do not falsely claim that this project reproduces the original ImageNet experiments.
+
+This is an **adaptation of StarNet for CIFAR-10**.
+
+Record the relevant sources and URLs because the report must document the algorithm research process.
+
+---
+
+# PHASE 2 — Design the experiment
+
+Design the experiment before running the full training.
+
+The primary task is:
+
+**CIFAR-10 image classification**
+
+Use a reproducible dataset protocol such as:
+
+* 45,000 training images
+* 5,000 validation images
+* 10,000 official test images
+
+Use appropriate CIFAR-10 preprocessing and data augmentation.
+
+The exact training configuration should be selected based on the actual available hardware and reasonable training time.
+
+The experiment must include:
+
+## Experiment A — Conventional CNN baseline
+
+Implement a reasonably compact conventional CNN.
+
+The baseline should be reasonably comparable to StarNet in terms of model capacity.
+
+Record:
+
+* architecture
+* number of parameters
+* training configuration
+* training time
+* inference time
+* accuracy
+* loss
+* other relevant metrics
+
+## Experiment B — StarNet
+
+Implement a compact StarNet adapted for CIFAR-10.
+
+Record the same metrics as the baseline.
+
+## Experiment C — Star Operation ablation
+
+Perform a meaningful ablation that investigates the contribution of the Star Operation.
+
+For example, replace/disable the Star Operation while keeping the rest of the architecture and training configuration as controlled as reasonably possible.
+
+The purpose is to answer:
+
+**Does the Star Operation itself contribute to the observed performance?**
+
+Clearly document exactly what is changed and what remains fixed.
+
+---
+
+# PHASE 3 — PILOT EXPERIMENT — DO THIS BEFORE FULL TRAINING
+
+This phase is mandatory.
+
+**Do not immediately launch long full experiments.**
+
+First create a short pilot run to verify the entire pipeline.
+
+The pilot should test:
+
+* CIFAR-10 downloading/loading
+* preprocessing
+* dataloader
+* model construction
+* forward pass
+* loss calculation
+* backward pass
+* optimizer
+* checkpoint saving/loading if used
+* validation
+* evaluation
+* MPS/CPU device handling
+* metric logging
+* result saving
+* figure generation
+* basic website data generation if practical
+
+The pilot should be intentionally small and fast.
+
+For example, use a small subset of the training data and only a few epochs/iterations.
+
+The exact pilot size should be chosen based on the hardware.
+
+The pilot is **not** the final experiment and must not be presented as the final result in the report.
+
+After the pilot:
+
+1. Check for runtime errors.
+2. Check tensor shapes.
+3. Check that the loss decreases or behaves plausibly.
+4. Check that accuracy is not completely broken.
+5. Check that results are being saved correctly.
+6. Check that plots can be generated.
+7. Check that the website can read the generated data if the website pipeline is already implemented.
+8. Estimate the expected runtime of the full experiments.
+
+If the pilot fails, debug and rerun the pilot until the pipeline works.
+
+**Do not proceed to the full experiment until the pilot pipeline has been verified.**
+
+At the end of the pilot phase, report to me briefly:
+
+* whether the pilot passed
+* device used (MPS/CPU)
+* approximate runtime
+* any problems encountered
+* what will be changed before full training
+
+Then proceed to the full experiments without waiting for another algorithm approval.
+
+---
+
+# PHASE 4 — FULL EXPERIMENTS
+
+Once the pilot is verified, run the actual experiments.
+
+Use fixed random seeds where appropriate.
+
+Do not fabricate results.
+
+The final results must come from actual executed runs.
+
+At minimum, collect:
+
+### Classification performance
+
+* training loss
+* validation loss
+* training accuracy
+* validation accuracy
+* test accuracy
+
+### Model information
+
+* parameter count
+* model size if practical
+
+### Computational information
+
+* training time
+* inference time
+* device used
+* FLOPs or another appropriate computational measure if reliably measurable
+
+### Error analysis
+
+* confusion matrix
+* representative correct predictions
+* representative incorrect predictions
+
+### Ablation
+
+Compare:
+
+* baseline CNN
+* StarNet
+* StarNet without/modified Star Operation
+
+Use a consistent experimental protocol wherever practical.
+
+---
+
+# PHASE 5 — SAVE ALL ACTUAL RESULTS
+
+Do not leave results only in terminal output.
+
+Create structured result files.
+
+For example:
+
+```text
+artifacts/
+├── results/
+│   ├── baseline_results.json
+│   ├── starnet_results.json
+│   ├── ablation_results.json
+│   └── experiment_summary.csv
+├── figures/
+│   ├── training_loss.png
+│   ├── training_accuracy.png
+│   ├── confusion_matrix.png
+│   ├── model_comparison.png
+│   ├── ablation_comparison.png
+│   └── prediction_examples.png
+└── checkpoints/
+```
+
+You may modify the structure if there is a better design.
+
+The important requirement is:
+
+**Every number shown in the website and report must be traceable to actual experiment output.**
+
+---
+
+# PHASE 6 — Visualization Website
+
+Build a real, functional website for visualizing the project.
+
+This is a required deliverable, not an optional extra.
+
+The website should present the project clearly to someone who has not read the source code.
+
+At minimum, include sections/pages for:
+
+## 1. Project Overview
+
+Explain:
+
+* problem
+* StarNet
+* CIFAR-10
+* research question
+* experimental design
+
+## 2. Algorithm
+
+Visually explain:
+
+* conventional CNN workflow
+* StarNet workflow
+* Star Operation
+* what makes StarNet different
+
+Use diagrams/visualizations where useful.
+
+## 3. Dataset
+
+Show:
+
+* CIFAR-10 classes
+* sample images
+* train/validation/test split
+* basic dataset statistics
+
+## 4. Training Results
+
+Display actual:
+
+* training loss curves
+* validation loss curves
+* training accuracy
+* validation accuracy
+
+## 5. Model Comparison
+
+Compare actual:
+
+* baseline CNN
+* StarNet
+
+Show relevant:
+
+* accuracy
+* parameters
+* training time
+* inference time
+* FLOPs if available
+
+## 6. Ablation Study
+
+Clearly show:
+
+* StarNet with Star Operation
+* ablated version
+
+Explain what changed.
+
+## 7. Confusion Matrix
+
+Display the actual test-set confusion matrix.
+
+## 8. Predictions
+
+Display representative:
+
+* correct predictions
+* incorrect predictions
+
+Include predicted and true labels.
+
+The website must be **data-driven**.
+
+Do not hard-code fake/example results.
+
+It should read the actual generated experiment results and figures.
+
+Also make the website visually clean and appropriate for a university AI assignment.
+
+Provide simple instructions for running it locally.
+
+---
+
+# PHASE 7 — FINAL REPORT
+
+This is extremely important.
+
+Read `requirement.txt` again before writing the report.
+
+The report must **strictly follow every requirement in `requirement.txt`**.
+
+The report must contain **all six required sections**, including the required **source-code repository webpage link**.
+
+Do not omit any required section.
+
+The report must be based on the actual implementation and actual experiments.
+
+It should explain:
+
+## Required content
+
+### 1. How AI tools were used to find the algorithm
+
+Document:
+
+* how the algorithm search was performed
+* what prompts/questions were used
+* what candidate algorithms were considered
+* why StarNet was selected
+
+Do not falsely claim that I manually performed research that was actually done through AI assistance.
+
+### 2. Algorithm description
+
+Explain:
+
+* StarNet
+* Star Operation
+* motivation
+* architecture
+* relevant technical concepts
+* relationship to conventional CNNs
+* original paper
+
+Clearly identify the CIFAR-10 adaptation.
+
+### 3. How AI implemented the algorithm
+
+Explain:
+
+* how AI assisted implementation
+* implementation workflow
+* important implementation decisions
+* debugging/verification
+* how generated code was checked
+* which components were AI-assisted
+
+Do not reduce this section to simply saying:
+
+“AI generated the code.”
+
+Explain the actual process.
+
+### 4. Experiment settings and results
+
+Include:
+
+* dataset
+* preprocessing
+* split
+* architecture
+* hyperparameters
+* hardware
+* software environment
+* training procedure
+* evaluation metrics
+* baseline
+* StarNet
+* ablation
+* actual results
+* tables
+* figures
+* confusion matrix
+* interpretation
+
+### 5. What I learned
+
+Discuss:
+
+* CNNs
+* StarNet
+* Star Operation
+* experimentation
+* ablation studies
+* AI-assisted coding
+* debugging
+* limitations
+* what was learned from comparing theoretical expectations with actual results
+
+### 6. Source-code repository
+
+Include the required source-code repository webpage link specified by `requirement.txt`.
+
+Do not invent a repository URL.
+
+If the repository has not yet been created or the correct URL is unavailable, clearly identify this as a remaining task rather than fabricating a link.
+
+---
+
+# PHASE 8 — REPORT QUALITY CONTROL
+
+Before finalizing the report, verify:
+
+* Every required section from `requirement.txt` is present.
+* All six required sections are present.
+* The source-code repository webpage link is present if required and valid.
+* Every numerical result matches the actual experiment outputs.
+* Every figure corresponds to an actual experiment.
+* Table values match the underlying result files.
+* StarNet is not incorrectly described as the original ImageNet implementation.
+* CIFAR-10 adaptation is clearly explained.
+* Pilot results are not accidentally presented as final results.
+* Baseline and ablation definitions are consistent throughout the report.
+* Hardware information is accurate.
+* Training configuration is accurate.
+* No fabricated results or citations exist.
+* References are complete and consistent.
+
+---
+
+# PHASE 9 — README
+
+Create/update `README.md` with clear instructions for:
+
+1. environment setup
+2. dependency installation
+3. dataset preparation
+4. pilot experiment
+5. full training
+6. evaluation
+7. generating figures
+8. running the visualization website
+9. generating/opening the report
+
+A new user should be able to understand the complete project workflow from the README.
+
+---
+
+# PHASE 10 — FINAL END-TO-END VERIFICATION
+
+Before declaring the assignment complete, actually verify the whole pipeline.
+
+At minimum:
+
+```text
+requirement.txt
+      ↓
+source code
+      ↓
+pilot experiment
+      ↓
+full experiments
+      ↓
+actual result files
+      ↓
+figures
+      ↓
+website
+      ↓
+report
+      ↓
+README
+```
+
+Check that:
+
+* source code runs
+* experiments have actually been executed
+* result files exist
+* figures exist
+* website starts successfully
+* website uses actual results
+* report opens correctly
+* report contains all required sections
+* report numbers match result files
+* README commands are correct
+* no obvious broken paths remain
+
+If generating both Word and PDF versions is practical, generate both.
+
+If PDF generation is not reliable in the environment, clearly state the limitation and still provide the completed Word report.
+
+---
+
+# IMPORTANT RULES
+
+1. **Do not fabricate any experimental result.**
+2. **Do not fabricate citations or repository URLs.**
+3. **Do not claim an experiment was run unless you actually ran it.**
+4. **Do not claim the website works unless you actually test it.**
+5. **Do not claim the report is complete until you compare it against `requirement.txt` again.**
+6. **Do not skip the pilot experiment.**
+7. **Do not immediately start expensive full training before validating the pipeline.**
+8. **Keep all generated artifacts organized.**
+9. **Use actual experiment outputs for the website and report.**
+10. **Clearly distinguish the original StarNet paper from our CIFAR-10 adaptation.**
+11. **Do not unnecessarily increase the project scope beyond what `requirement.txt` requires.**
+12. If a technical problem occurs, debug it rather than silently replacing the required algorithm with another one.
+13. If a requirement cannot be fulfilled because of a genuine technical limitation, document the limitation clearly instead of pretending it was fulfilled.
+
+---
+
+# Execution priority
+
+Follow this order:
+
+**Read requirements → inspect workspace → research/verify StarNet → design → implement → pilot → verify pilot → full experiments → analyze results → generate figures → build website → write report → final verification.**
+
+The goal is not merely to produce StarNet code.
+
+The goal is to produce a **complete, reproducible, demonstrable university AI assignment** containing:
+
+**algorithm implementation + baseline + ablation + actual experiments + visualization website + complete report + README + verified deliverables.**
+
+Start now by reading `requirement.txt` and inspecting the project directory.

@@ -1,0 +1,24 @@
+{
+  "sections": [
+    "1 How I asked AI to find the algorithm",
+    "2 Algorithm description",
+    "3 How AI implements the algorithm",
+    "4 Experiment settings and results",
+    "5 What I have learnt from this AI assignment",
+    "6 Webpage link of source codes"
+  ],
+  "result_files": [
+    "artifacts/results/baseline_results.json",
+    "artifacts/results/starnet_results.json",
+    "artifacts/results/ablation_results.json"
+  ],
+  "repository_url": "https://github.com/yuannnnn1/StarNet",
+  "test_accuracy": {
+    "baseline": 0.8722,
+    "starnet": 0.8614,
+    "ablation": 0.856
+  },
+  "star_minus_addition_pp": 0.5400000000000071,
+  "star_minus_baseline_pp": -1.079999999999992,
+  "pilot_results_used_as_final": false
+}

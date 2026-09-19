@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "45000/5000 exhaustive nonoverlapping training/validation indices",
+    "Ablation has identical parameter structure and changes forward behavior",
+    "baseline: finite CPU forward; checkpoint hash/load; count, accuracy, confusion matrix and best epoch verified",
+    "starnet: finite CPU forward; checkpoint hash/load; count, accuracy, confusion matrix and best epoch verified",
+    "ablation: finite CPU forward; checkpoint hash/load; count, accuracy, confusion matrix and best epoch verified",
+    "Dashboard equals raw results; generated figure files exist"
+  ]
+}
