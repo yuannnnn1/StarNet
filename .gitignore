@@ -1,11 +1,31 @@
+# Python environments and caches
 .venv/
+venv/
 __pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Operating system and editor temporary files
 .DS_Store
-data/
+._*
+*.swp
+*.swo
+~$*
+
+# Keep the extracted CIFAR-10 dataset in Git.
+# The redundant download archive exceeds GitHub's 100 MiB file limit.
+/data/cifar-10-python.tar.gz
+
+# Local model checkpoints and visual QA output
 artifacts/checkpoints/
 artifacts/pilot/checkpoints/
 artifacts/report_qa/
 artifacts/website_qa/
+
+# Dependencies, logs and downloaded reference papers
 node_modules/
 *.log
 docs/sources/*.pdf

@@ -1,4 +1,4 @@
-# StarNet for CIFAR 10 Image Classification
+# StarNet for CIFAR-10 Image Classification
 
 CISC3024 Pattern Recognition | AI Assignment 1 | September 2026
 
@@ -6,19 +6,56 @@ This project adapts the CVPR 2024 StarNet CNN to small-image classification. Aft
 
 ## 1 How I asked AI to find the algorithm
 
-My actual instruction to Codex was "read requirement_2.txt and execute it". That file explicitly approved StarNet, CIFAR-10, a conventional CNN baseline, a Star Operation ablation, actual experiments, a visualization website, and a Word/PDF report. The earlier requirement.txt asked for recent CNN or autoencoder research. Codex preserved both files. No earlier search conversation was available, so I do not claim that a new open-ended algorithm-selection dialogue occurred in this session.
+### Actual prompts and approval sequence
 
-Codex verified the approved choice before writing implementation code. It retrieved primary CVF publication pages for StarNet, ConvNeXt and FasterNet, inspected the official StarNet GitHub tree and block implementation, and checked the official CIFAR-10 page. It subsequently read the full StarNet paper. The questions guiding these reads were whether StarNet is a recent deep CNN, what the star operator computes, how to adapt its spatial downsampling, and whether alternatives are feasible on this Mac. These are descriptions of agent research questions, not invented verbatim prompts from me.
+I first asked Codex to research the assignment before implementing anything. These are verbatim excerpts from my initial message:
+
+> Read `requirement.txt` completely.
+> Do not modify any files or write any code yet.
+> First inspect the workspace and available computing resources, then research several recent Deep CNN / Deep Autoencoder algorithms that satisfy the assignment.
+
+> Do not start implementation until I approve the algorithm and project plan.
+
+I requested original papers, publication years, assignment eligibility, applications, datasets, difficulty, computing requirements and a justified recommendation. When inspection was interrupted, my actual follow-up was:
+
+> keep searching
+
+After receiving the comparison, I explicitly approved the proposal:
+
+> I approve the project plan:
+>
+> **Algorithm: StarNet (Rewrite the Stars, CVPR 2024)**
+> **Application: CIFAR-10 image classification**
+
+The same approval message requested the complete assignment, including experiments, a data-driven website and the report. It also stated:
+
+> Please do not fabricate any results. All reported numbers, tables, and figures must come from actual executed experiments.
+
+Thus, research preceded approval and implementation. Existing implementation-stage notes separately record `read requirement_2.txt and execute it`; that record does not replace this earlier selection dialogue. This revision corrects the previous report's statement that no earlier search conversation was available.
+
+### Actual research process
+
+Codex read all thirteen sections of `requirement.txt` through TextEdit and inspected the workspace through Finder. The visible folder then contained only `requirement.txt`. System Settings identified an Apple M5 MacBook Pro, 16 GB unified memory, macOS 26.6.2 and approximately 851 GB free storage. ML package availability and actual MPS execution were not established during this initial inspection; the later measured environment appears in section 4.
+
+The actual Google search query was `FasterNet Run Don't Walk CVPR 2023 StarNet 2024 convolutional network`. Codex then directly opened the FasterNet arXiv record, CVF publication pages for StarNet, ConvNeXt V2 and DRAEM, the official StarNet repository, and official CIFAR and MVTec AD dataset pages. These direct source visits are not presented as additional search-engine queries. The implementation-stage notes additionally document ConvNeXt research and inspection of the official StarNet block. Questions about model category, spatial downsampling and local feasibility describe the reasoning process, not invented verbatim student prompts.
 
 
 
-| Candidate | Year and category | Technical idea and project fit |
-| --- | --- | --- |
-| StarNet [1] | 2024, deep CNN | Multiplicative branches; compact blocks and direct operator ablation. |
-| ConvNeXt [2] | 2022, deep CNN | Modernized convolutional architecture; original scale and training need downscaling. |
-| FasterNet [3] | 2023, deep CNN | Partial convolution; efficient models, with device-dependent latency and channel-slicing complexity. |
+| Candidate and primary paper | Year and eligibility | Application and datasets | Difficulty and local feasibility |
+| --- | --- | --- | --- |
+| StarNet, *Rewrite the Stars* [1] | CVPR 2024; deep CNN | Object classification; CIFAR-10/CIFAR-100 | Moderate; compact convolutional blocks with multiplicative branches and a direct operator ablation. |
+| FasterNet, *Run, Don't Walk* [3] | CVPR 2023; deep CNN | Efficient recognition; CIFAR-10/CIFAR-100 | Moderate; partial convolution reduces redundant work, but channel slicing and hardware-dependent latency need care. |
+| ConvNeXt V2, *Co-Designing and Scaling ConvNets With Masked Autoencoders* [5] | CVPR 2023; deep CNN with convolutional masked-autoencoder pretraining | Classification and representation learning; reduced-scale CIFAR experiments | High for the complete recipe; masked pretraining, Global Response Normalization and downstream training enlarge the scope. |
+| DRAEM, *A Discriminatively Trained Reconstruction Embedding for Surface Anomaly Detection* [6] | ICCV 2021; deep reconstruction/autoencoder and discriminative networks | Industrial defect detection/localization; MVTec AD [7] | Moderate to high; synthetic anomaly generation, reconstruction and pixel-level evaluation on larger images. Older, but within the 2020s criterion. |
+| ConvNeXt, *A ConvNet for the 2020s* [2] | CVPR 2022; deep CNN, recorded in the implementation-stage comparison | Classification; CIFAR-10/CIFAR-100 | Moderate; modern convolutional architecture requiring downscaling. Distinct from ConvNeXt V2. |
 
-All have credible primary sources and image classification applications. CIFAR-10 or CIFAR-100 would permit smaller adaptations; original ImageNet experiments are more expensive. StarNet was retained because it was already approved and offers a concise, controlled experiment on an M5 with 16 GB memory. Its 2024 publication satisfies the assignment's 2020s recency criterion; it is not claimed to be the newest model in 2026. Cost comparisons between candidate families were qualitative, not local benchmarks. Research URLs and provenance are recorded in docs/research.md and cited in section 6.
+The initial response also mentioned a generic compact convolutional autoencoder, but without a specific recent paper it was not a fully qualified candidate. The table retains identifiable published methods. Cost comparisons are qualitative assessments, not local benchmarks of these families.
+
+### Selection rationale
+
+StarNet was recommended before my approval because it combines an authoritative recent paper, an unambiguous CNN architecture, an official implementation and a focused ablation question. Its 2024 publication satisfies the assignment's 2020s criterion; it is not claimed to be the newest model in 2026 or universally the best model. Compact standard-layer implementations are appropriate for the M5/16 GB budget.
+
+CIFAR-10 [4] offers 60,000 public 32x32 RGB images, ten classes, a standard 50,000/10,000 train/test split and an approximately 163 MB Python archive. It permits training from scratch and reproducible classification evaluation. CIFAR-100 would increase task difficulty, while MVTec AD suits DRAEM but adds localization and data-handling complexity. Full ImageNet training was outside the intended local scope. I approved the proposed 45,000/5,000/10,000 split, comparable CNN baseline, star-operation ablation, learning curves, confusion matrix and timing analysis. Primary sources are listed in section 6; the conversation establishes the initial selection history, while `docs/research.md` records the implementation-stage research.
 
 ## 2 Algorithm description
 
@@ -48,15 +85,32 @@ The baseline has two 3x3 Conv-BN-ReLU layers per stage, widths 32/64/128, 2x2 ma
 
 ## 3 How AI implements the algorithm
 
-Codex performed the research, design, coding, command execution, debugging, experiments, visualization and report generation. My role was to provide the specification and approved topic, authorize execution, and supply the GitHub destination. I did not manually write the project code. This account describes the workflow recorded in this session.
+Codex assisted with research, design, coding, command execution, debugging, experiments, visualization and report preparation. My role was to specify requirements, assess the recommendation, approve StarNet/CIFAR-10 and request the complete assignment. Implementation-stage notes additionally record the supplied GitHub destination. I did not manually write the project code. Research and approval are supported by this conversation; the execution account below is supported by the existing project artifacts and verification records.
+
+The first implementation attempt in this conversation stopped because usable file-editing and command-execution tools were unavailable. That attempt produced no project files or experiments. The later project artifacts now present in the workspace provide the evidence for the completed runs below; they must not be attributed to the earlier blocked attempt. This report revision inspected saved results and source files rather than rerunning training.
 
 ### From paper to executable pipeline
 
-The starting directory contained only requirement.txt and requirement_2.txt. Codex checked Python packages, disk space and hardware. System Python lacked the ML stack, while Anaconda provided PyTorch and torchvision. MPS was unavailable inside the sandbox but worked in authorized execution outside it. The approved three-model protocol was implemented before full training.
+According to the implementation-stage records, that phase began with requirement.txt and requirement_2.txt. This is a later workspace state than the initial one-file research inspection. Those records describe checks of Python packages, storage and hardware: system Python lacked the ML stack, Anaconda provided PyTorch and torchvision, and MPS became available outside the sandbox. The saved execution environment identifies MPS as the training device. The approved three-model protocol was implemented before full training.
 
 src/models.py expresses the official StarNet block using standard PyTorch layers, with a single operation selector for multiplication or addition. src/data.py downloads CIFAR-10, creates the seeded stratified split, measures training-only normalization, and creates augmented training and deterministic evaluation datasets. src/train.py constructs the optimizer and scheduler, runs epochs, writes histories atomically, saves the best validation checkpoint, reloads it, and evaluates the official test set.
 
-scripts/analyze.py turns saved predictions and histories into figures, CSV summaries and dashboard JSON. website/ loads that JSON and generated images; its controls switch metrics, models and prediction outcomes. scripts/verify.py independently reconstructs the confusion matrices and accuracy, checks disjoint split indices, checks parameter structures, reloads checkpoints on CPU and checks finite forward outputs. This report is generated by scripts/report.py from the same result files; artifacts/report/report_content.json preserves its generated content.
+scripts/analyze.py turns saved predictions and histories into figures, CSV summaries and dashboard JSON. website/ loads that JSON and generated images; its controls switch metrics, models and prediction outcomes. scripts/verify.py reconstructs confusion matrices and accuracy, checks disjoint split indices and parameter structures, reloads checkpoints on CPU and checks finite forward outputs. The original report was generated by scripts/report.py from these results. This Markdown revision additionally incorporates the earlier conversation. The existing report_content.json and Word/PDF files describe the earlier report version and have not been regenerated in this revision; running scripts/report.py would overwrite these editorial changes.
+
+### Website and evidence traceability
+
+The website is a local interactive dashboard served from the project root. Its experiment displays load `artifacts/results/dashboard.json` and generated images; architecture and dataset descriptions explain the experimental context. Model and metric controls expose comparisons and curves, while prediction filters distinguish correct from incorrect examples. The website presents saved experiments rather than launching new training. Timing values retain the measurement definitions in section 4.
+
+| Report or website content | Saved evidence |
+| --- | --- |
+| Accuracy, loss, parameter count and timing | `artifacts/results/*_results.json` and `experiment_summary.csv` |
+| Training and validation curves | `artifacts/results/*_history.json` |
+| Confusion matrices and prediction examples | `artifacts/results/*_predictions.json` and generated figures |
+| Protocol and environment | `configs/full.json`, `artifacts/results/config.json`, `split.json` and `environment.json` |
+| Metric/checkpoint and controlled-ablation checks | `artifacts/results/verification.json` and `protocol_checks.json` |
+| Recorded website checks | `artifacts/results/website_http_checks.json` and `website_ui_checks.json` |
+
+The saved verification records report successful metric reconstruction, checkpoint checks, split checks and website checks. They are evidence of prior verification, not claims that browser or training checks were rerun while editing this Markdown file.
 
 ### Pilot verification and corrections
 
@@ -170,7 +224,9 @@ The example selection is deterministic and disclosed; it is not a random estimat
 
 This reflection is written with AI assistance from the documented project evidence. It describes the technical lessons of this assignment; it does not claim that I manually coded the models or personally ran commands that Codex executed.
 
-I learned to make algorithm-search requests testable. A recent publication date alone does not establish that a method is a deep CNN, and a familiar name is not evidence of local feasibility. Checking the primary paper and official implementation established both the convolutional structure and the role of element-wise multiplication. Comparing ConvNeXt and FasterNet also clarified that implementation simplicity and a clear ablation question matter for a limited student project. I should preserve real prompts and sources rather than reconstruct a more impressive-looking research conversation.
+I learned to make algorithm-search requests testable. A recent publication date alone does not establish that a method is a deep CNN, and a familiar name is not evidence of local feasibility. Checking the primary paper and official implementation established both the convolutional structure and the role of element-wise multiplication. Comparing FasterNet, ConvNeXt V2 and DRAEM during selection, with ConvNeXt considered in the implementation notes, clarified that complexity and a clear ablation question matter for a limited student project. Preserving my original research request and explicit approval is more reliable than reconstructing a conversation afterward.
+
+I also learned to distinguish an AI's intended actions from completed work. The initial tool-limited attempt did not create an implementation, despite progress messages describing intended next steps. The results in this report require saved experiment evidence. Likewise, the earlier draft's statement that no search conversation was available had to be corrected when this session was incorporated. Checking provenance is part of evaluating AI-generated documentation.
 
 I learned that the star operation is more specific than just using a nonlinear activation. Multiplying two learned projections introduces products between feature coordinates. Depthwise convolutions mix spatial information within channels, while pointwise convolutions mix channels. The residual path retains the input and makes stacking blocks practical. These distinctions make it easier to read a block diagram and verify that generated code implements the intended computation.
 
@@ -217,3 +273,15 @@ Serve the project root with python -m http.server 8000 --bind 127.0.0.1 and open
 [4] Alex Krizhevsky. Learning Multiple Layers of Features from Tiny Images. Technical report, University of Toronto, 2009. Dataset creators: Alex Krizhevsky, Vinod Nair and Geoffrey Hinton.
 
 [Official CIFAR-10 dataset and report](https://www.cs.toronto.edu/~kriz/cifar.html)
+
+[5] Sanghyun Woo, Shoubhik Debnath, Ronghang Hu, Xinlei Chen, Zhuang Liu, In So Kweon and Saining Xie. ConvNeXt V2: Co-Designing and Scaling ConvNets With Masked Autoencoders. CVPR, 2023, pp. 16133-16142.
+
+[ConvNeXt V2 primary paper](https://openaccess.thecvf.com/content/CVPR2023/html/Woo_ConvNeXt_V2_Co-Designing_and_Scaling_ConvNets_With_Masked_Autoencoders_CVPR_2023_paper.html)
+
+[6] Vitjan Zavrtanik, Matej Kristan and Danijel Skocaj. DRAEM: A Discriminatively Trained Reconstruction Embedding for Surface Anomaly Detection. ICCV, 2021, pp. 8330-8339.
+
+[DRAEM primary paper](https://openaccess.thecvf.com/content/ICCV2021/html/Zavrtanik_DRAEM_-_A_Discriminatively_Trained_Reconstruction_Embedding_for_Surface_Anomaly_ICCV_2021_paper.html)
+
+[7] MVTec Software. MVTec AD industrial anomaly detection dataset. The official page describes more than 5,000 images across fifteen categories, normal training images and pixel-level test annotations.
+
+[Official MVTec AD dataset](https://www.mvtec.com/research-teaching/datasets/mvtec-ad)
