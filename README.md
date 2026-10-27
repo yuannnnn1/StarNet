@@ -1,6 +1,6 @@
 # StarNet for CIFAR-10
 
-CISC3024 Pattern Recognition, AI Assignment 1. An AI-implemented adaptation of
+An AI-implemented adaptation of
 **Rewrite the Stars (CVPR 2024)** with a comparable conventional CNN and a controlled
 addition ablation. This is not a reproduction of the original ImageNet experiments.
 
